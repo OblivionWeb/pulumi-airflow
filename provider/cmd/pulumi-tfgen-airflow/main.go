@@ -16,7 +16,7 @@ package main
 
 import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
-	airflow "github.com/pulumi/pulumi-airflow/provider"
+	airflow "github.com/OblivionWeb/pulumi-airflow/provider"
 	"github.com/OblivionWeb/pulumi-airflow/provider/pkg/version"
 )
 

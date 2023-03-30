@@ -18,12 +18,12 @@ import (
 	"fmt"
 	"path/filepath"
 
+	"github.com/OblivionWeb/pulumi-airflow/provider/pkg/version"
+	"github.com/apache/airflow-client-go/airflow"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/OblivionWeb/pulumi-airflow/provider/pkg/version"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/airflow/terraform-provider-airflow/airflow"
 )
 
 // all of the token components used below.
@@ -79,7 +79,7 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:   "https://www.pulumi.com",
 		Repository: "https://github.com/pulumi/pulumi-airflow",
 		// The GitHub Org for the provider - defaults to `terraform-providers`
-		GitHubOrg: "",
+		GitHubOrg: "drfaust92",
 		Config:    map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
