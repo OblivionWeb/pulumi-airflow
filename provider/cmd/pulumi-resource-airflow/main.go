@@ -17,12 +17,12 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	airflow "github.com/OblivionWeb/pulumi-airflow/provider"
 	"github.com/OblivionWeb/pulumi-airflow/provider/pkg/version"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 )
 
 func main() {
 	// Modify the path to point to the new provider
-	tfbridge.Main("airflow", version.Version, airflow.Provider(), pulumiSchema)
+	tfbridge.Main("airflow", version.Version, version.Version, airflow.Provider(), pulumiSchema)
 }

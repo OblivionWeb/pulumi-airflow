@@ -20,6 +20,8 @@ import (
 
 	"github.com/OblivionWeb/pulumi-airflow/provider/pkg/version"
 	"github.com/apache/airflow-client-go/airflow"
+	airflow "github.com/drfaust92/terraform-provider-airflow/shim"
+	"github.com/hashicorp/go-version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
@@ -46,7 +48,7 @@ func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) erro
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(airflow.Provider())
+	p := shimv2.NewProvider(airflow.NewProvider(version.Version))
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
@@ -79,7 +81,7 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:   "https://www.pulumi.com",
 		Repository: "https://github.com/pulumi/pulumi-airflow",
 		// The GitHub Org for the provider - defaults to `terraform-providers`
-		GitHubOrg: "drfaust92",
+		GitHubOrg: "DrFaust92",
 		Config:    map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
@@ -138,11 +140,6 @@ func Provider() tfbridge.ProviderInfo {
 				mainPkg,
 			),
 			GenerateResourceContainerTypes: true,
-		},
-		CSharp: &tfbridge.CSharpInfo{
-			PackageReferences: map[string]string{
-				"Pulumi": "3.*",
-			},
 		},
 	}
 
